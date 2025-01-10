@@ -1,6 +1,15 @@
 # mds_2025_helper_functions
 
-A package to streamline common chunks of code executed in the UBC MDS program
+A package to streamline common code chunks executed by students in the UBC MDS program circa 2025. 
+
+## Functions
+- compare_model_scores() - a function that takes multiple models and returns a table of mean CV scores for each for easy comparison.
+- [PLACEHOLDER - SAM'S FUNCTION]
+- [PLACEHOLDER - SAMKARLYGASH'S FUNCTION]
+- [PLACEHOLDER - XI'S FUNCTION]
+
+## Similar packages
+While this package extends cross-validation from [scikit-learn](https://scikit-learn.org/stable/), there are no known packages that provide CV score comparison similar to compare_model_scores(). The most similar is the summary_cv() function in the [CrossPy](https://github.com/UBC-MDS/CrossPy) package, which summarizes CV scores for a single model.
 
 ## Installation
 
