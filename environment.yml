@@ -1,0 +1,5 @@
+name: mds-2025-helper
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
