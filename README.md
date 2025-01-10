@@ -4,12 +4,14 @@ A package to streamline common code chunks executed by students in the UBC MDS p
 
 ## Functions
 - compare_model_scores() - a function that takes multiple models and returns a table of mean CV scores for each for easy comparison.
-- [PLACEHOLDER - SAM'S FUNCTION]
+- perform_eda() - a function to perform exploratory data analysis on a dataset
 - [PLACEHOLDER - SAMKARLYGASH'S FUNCTION]
 - [PLACEHOLDER - XI'S FUNCTION]
 
 ## Similar packages
-While this package extends cross-validation from [scikit-learn](https://scikit-learn.org/stable/), there are no known packages that provide CV score comparison similar to compare_model_scores(). The most similar is the summary_cv() function in the [CrossPy](https://github.com/UBC-MDS/CrossPy) package, which summarizes CV scores for a single model.
+- While this package extends cross-validation from [scikit-learn](https://scikit-learn.org/stable/), there are no known packages that provide CV score comparison similar to compare_model_scores(). The most similar is the summary_cv() function in the [CrossPy](https://github.com/UBC-MDS/CrossPy) package, which summarizes CV scores for a single model.
+
+- While the `ProfileReport` class from the [ydata-profiling](https://github.com/ydataai/ydata-profiling) package provides automated exploratory data analysis and reporting, there are no known packages that offer the same level of flexible, on-demand visualizations and insights as the `perform_eda()` function. The most similar functionality is available in pandas-profiling, which generates detailed HTML reports but lacks the modular, interactive approach that `perform_eda()` provides for tailoring EDA to specific datasets and workflows.
 
 ## Installation
 
