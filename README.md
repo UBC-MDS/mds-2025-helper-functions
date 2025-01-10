@@ -16,6 +16,10 @@ $ pip install mds_2025_helper_functions
 
 Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
 
+## Contributors
+
+Karlygash Zhakupbayeva, Samuel Adetsi, Xi Cu, Michael Hewlett
+
 ## License
 
 `mds_2025_helper_functions` was created by Karlygash Zhakupbayeva, Samuel Adetsi, Xi Cu, Michael Hewlett. It is licensed under the terms of the MIT license.
