@@ -10,3 +10,4 @@ def perform_eda(dataframe, rows=5, cols=2):
     Returns:
         None
     """
+    return None
