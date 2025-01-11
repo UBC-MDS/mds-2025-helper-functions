@@ -17,6 +17,7 @@ A package to streamline common code chunks executed by students in the UBC MDS p
 
 - There is no similar function could provide plot for hypothesis test output. Data Scientist do it manually, but it is not friendly for learner.
 
+There is no similar function could provide plot for hypothesis test output. Data Scientist do it manually, but it is not friendly for learner.
 ## Installation
 
 ```bash
