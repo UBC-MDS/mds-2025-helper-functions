@@ -15,6 +15,8 @@ A package to streamline common code chunks executed by students in the UBC MDS p
 
 - The `dataset_summary()` function combines essential dataset insights—missing values, feature types, duplicates, and basic statistics—into one comprehensive and easy-to-use tool. While similar functionality exists in libraries like [pandas-profiling](https://github.com/ydataai/pandas-profiling) and [missingno](https://github.com/ResidentMario/missingno), these tools focus on specific aspects or full-scale exploratory analysis. No single function consolidates all these features in one place, making `dataset_summary()` a uniquely efficient solution for preprocessing workflows.
 
+- There is no similar function could provide plot for hypothesis test output. Data Scientist do it manually, but it is not friendly for learner.
+
 ## Installation
 
 ```bash
