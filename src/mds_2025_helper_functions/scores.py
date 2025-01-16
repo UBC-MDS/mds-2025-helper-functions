@@ -1,4 +1,5 @@
 from sklearn.model_selection import cross_validate
+from sklearn.base import BaseEstimator
 import numpy as np
 import pandas as pd
 
@@ -33,6 +34,27 @@ def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=Fal
         - Columns: Score metrics
         - Index: Model names
     """
+    if len(args) <= 1:
+        raise TypeError(
+            "compare_model_scores() requires at least 2 models. "
+            f"You provided {len(args)}."
+        )
+    
+    for model in args:
+        if not isinstance(model, BaseEstimator):
+            raise TypeError(
+                "All models must be sklearn models. "
+                f"The following argument is not an sklearn model: {model}"
+                )
+    
+    model_types = {model._estimator_type for model in args}
+    
+    if len(model_types) > 1:
+        raise ValueError(
+            "All models must be of the same type. "
+            f"Found multiple types: {', '.join(model_types)}"
+        )
+    
     results = []
     for model in args:
         cv_results = cross_validate(
@@ -48,4 +70,4 @@ def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=Fal
         mean_scores['model'] = model.__class__.__name__
         results.append(mean_scores)
 
-    return pd.Dataframe(results).set_index('model')
+    return pd.DataFrame(results).set_index('model')
