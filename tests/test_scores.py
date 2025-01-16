@@ -1,4 +1,15 @@
 from mds_2025_helper_functions.scores import compare_model_scores
+import pytest
+
+def test_compare_model_scores_success():
+    """Test that basic function works"""
+    pass
+
+def test_compare_model_scores_edge():
+    pass
+
+def test_compare_model_scores_error():
+    pass
 
 def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=False, **kwargs):
     """Creates a table comparing mean CV scores of multiple models.
@@ -42,6 +53,9 @@ element in args not a model object
 mixed model types - some cat, some regress - used
 
 basic - takes in 2 models, an X, and a y - outputs a table
+
+
+
 
 """
 # write empty test blocks
