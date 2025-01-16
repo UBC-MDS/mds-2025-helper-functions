@@ -6,23 +6,7 @@ import pandas as pd
 import numpy as np
 from unittest.mock import patch
 
-# write pseudo code - desc, input (objects), output (objects)
-"""
-
-Tests my function should cover
-- outputs a dataframe with score metrics as columns and model names as index names
-- only 1 model is given
-- a mix of model types is given (e.g. regression model and classification model)
-- a non-model object is given as a model
-
-Tests cross-validate should already cover
-- no models are given
-- improper mix of model and target type (e.g. regression model and categorical target)
-- X is wrong type
-- y is wrong type
-
-"""
-# write data for tests
+# Mock data
 x = pd.DataFrame(
     {
         "feature_numeric": [1, 2, 3, 10],
