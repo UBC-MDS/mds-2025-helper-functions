@@ -70,12 +70,12 @@ x = pd.DataFrame(
         "feature_catergorical": ["apple", "banana", "orange", "apple"]
     }
 )
-y_r = pd.DataFrame(
+y_regression = pd.DataFrame(
     {
         "target_numeric": [5, 10, 14, 2]
     }
 )
-y_c = pd.DataFrame(
+y_classification = pd.DataFrame(
     {
         "target_categorical": ["olive", "cypress", "cypress", "oak"]
     }
@@ -84,5 +84,10 @@ dummy_r = DummyRegressor()
 tree_r = DecisionTreeRegressor()
 dummy_c = DummyClassifier()
 tree_c = DecisionTreeClassifier()
+
+output_col_names = ["fit_time", "score_time", "test_score", "train_score"]
+output_index_names_regression = ["dummy_r", "tree_r"]
+output_index_names_classification = ["dummy_c", "tree_c"]
+
 # write tests
 # write code
