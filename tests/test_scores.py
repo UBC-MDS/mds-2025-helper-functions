@@ -1,5 +1,9 @@
 from mds_2025_helper_functions.scores import compare_model_scores
 import pytest
+from sklearn.dummy import DummyRegressor, DummyClassifier
+from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
+import pandas as pd
+import numpy as np
 
 def test_compare_model_scores_success():
     """Test that basic function works"""
@@ -60,5 +64,25 @@ basic - takes in 2 models, an X, and a y - outputs a table
 """
 # write empty test blocks
 # write data for tests
+x = pd.DataFrame(
+    {
+        "feature_numeric": [1, 2, 3, 10],
+        "feature_catergorical": ["apple", "banana", "orange", "apple"]
+    }
+)
+y_r = pd.DataFrame(
+    {
+        "target_numeric": [5, 10, 14, 2]
+    }
+)
+y_c = pd.DataFrame(
+    {
+        "target_categorical": ["olive", "cypress", "cypress", "oak"]
+    }
+)
+dummy_r = DummyRegressor()
+tree_r = DecisionTreeRegressor()
+dummy_c = DummyClassifier()
+tree_c = DecisionTreeClassifier()
 # write tests
 # write code
