@@ -69,14 +69,14 @@ def test_compare_model_scores_classification():
         assert np.isclose(result_c.loc['DummyClassifier', 'test_score'], 0.8)
 
 # Edge tests
-def test_return_train_scores_false():
+def test_compare_model_scores_return_train_scores_false():
     """Train scores are excluded when return_train_scores=False"""
     with patch('sklearn.model_selection.cross_validate', return_value = mock_cv_results):
         result = compare_model_scores(dummy_r, tree_r, x, y_regression, return_train_scores=False)
         assert 'train_score' not in result.columns
         assert result.shape[1] == 3
 
-def test_multiple_scoring_metrics():
+def test_compare_model_scores_multiple_scoring_metrics():
     """DataFrame has correct columns for multiple scoring metrics"""
     with patch('sklearn.model_selection.cross_validate', return_value = mock_cv_results):
         result = compare_model_scores(
