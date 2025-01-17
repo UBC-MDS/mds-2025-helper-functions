@@ -7,7 +7,10 @@ dependencies:
   - pip
   - pip:
     - scikit-learn>=1.6.1
-    - numpy>=1.22.0
+    - numpy>=1.22.0,<1.28.0
     - pandas>=2.2.3
     - pytest>=8.3.4
     - pytest-cov>=6.0.0
+    - pytest-mock>=3.14.0
+    - matplotlib<3.10
+    - seaborn>=0.13.2
