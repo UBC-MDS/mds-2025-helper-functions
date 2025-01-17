@@ -3,6 +3,7 @@ from sklearn.base import BaseEstimator
 import numpy as np
 import pandas as pd
 
+
 def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=False, **kwargs):
     """Creates a table comparing mean CV scores of multiple models.
     Parameters
@@ -52,10 +53,12 @@ def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=Fal
     if len(model_types) > 1:
         raise ValueError(
             "All models must be of the same type. "
-            f"Found multiple types: {', '.join(model_types)}"
+            f"Found multiple types: {', '.join(sorted(model_types))}"
         )
     
     results = []
+    model_counts = {}
+
     for model in args:
         cv_results = cross_validate(
             model,
@@ -67,7 +70,14 @@ def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=Fal
         )
 
         mean_scores = {key: np.mean(val) for key, val in cv_results.items()}
-        mean_scores['model'] = model.__class__.__name__
+        model_name = model.__class__.__name__
+        if model_name in model_counts:
+            model_counts[model_name] += 1
+            model_name = f"{model_name}_{model_counts[model_name]}"
+        else:
+            model_counts[model_name] = 1
+
+        mean_scores['model'] = model_name
         results.append(mean_scores)
 
     return pd.DataFrame(results).set_index('model')
