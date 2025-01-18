@@ -77,6 +77,7 @@ def test_perform_eda_correlation_heatmap(mocker):
 
     perform_eda(df)
 
+@pytest.mark.filterwarnings("ignore::FutureWarning")
 def test_perform_eda_feature_visualizations(mocker):
     """Test that feature visualizations are generated."""
     mocker.patch("matplotlib.pyplot.show")
@@ -106,6 +107,7 @@ def test_perform_eda_outliers_report(capfd, mocker):
     assert "num1: 1 potential outliers" in captured.out
     assert "num2: 1 potential outliers" in captured.out
 
+@pytest.mark.filterwarnings("ignore::FutureWarning")
 def test_perform_eda_no_numeric_columns(capfd, mocker):
     """Test behavior when no numeric columns exist."""
     mocker.patch("matplotlib.pyplot.show")
