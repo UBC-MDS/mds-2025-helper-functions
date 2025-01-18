@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm, t, chi2, f
 
-def visualize_hypothesis_test_output_extended(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
+def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
     """
     Visualize Type I (\u03b1) and Type II (\u03b2) errors in hypothesis testing.
 
@@ -55,14 +55,22 @@ def visualize_hypothesis_test_output_extended(test_output, test_type="z", alpha=
     elif test_type == "chi2":
         if df is None:
             raise ValueError("Degrees of freedom (df) must be specified for chi-squared tests.")
-        critical_value = chi2.ppf(1 - alpha, df=df)
+        if tail == "two-tailed":
+            critical_value_low = chi2.ppf(alpha / 2, df=df)
+            critical_value_high = chi2.ppf(1 - alpha / 2, df=df)
+        else:
+            critical_value = chi2.ppf(1 - alpha, df=df)
         dist_null = lambda x: chi2.pdf(x, df=df)
         dist_alt = lambda x: chi2.pdf(x, df=df + 1)  # Alternative hypothesis
 
     elif test_type == "anova":
         if df1 is None or df2 is None:
             raise ValueError("Degrees of freedom (df1 and df2) must be specified for ANOVA tests.")
-        critical_value = f.ppf(1 - alpha, dfn=df1, dfd=df2)
+        if tail == "two-tailed":
+            critical_value_low = f.ppf(alpha / 2, dfn=df1, dfd=df2)
+            critical_value_high = f.ppf(1 - alpha / 2, dfn=df1, dfd=df2)
+        else:
+            critical_value = f.ppf(1 - alpha, dfn=df1, dfd=df2)
         dist_null = lambda x: f.pdf(x, dfn=df1, dfd=df2)
         dist_alt = lambda x: f.pdf(x, dfn=df1, dfd=df2 + 1)  # Alternative hypothesis
 
