@@ -12,6 +12,7 @@ def test_htv_z_test_two_tailed():
     fig, ax = htv(test_output, test_type="z", alpha=0.05, tail="two-tailed")
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_z_test_one_tailed():
     test_output = {
@@ -23,6 +24,7 @@ def test_htv_z_test_one_tailed():
     fig, ax = htv(test_output, test_type="z", alpha=0.05, tail="one-tailed")
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_t_test_two_tailed():
     test_output = {
@@ -35,6 +37,7 @@ def test_htv_t_test_two_tailed():
     fig, ax = htv(test_output, test_type="t", alpha=0.05, tail="two-tailed")
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_t_test_one_tailed():
     test_output = {
@@ -47,6 +50,7 @@ def test_htv_t_test_one_tailed():
     fig, ax = htv(test_output, test_type="t", alpha=0.1, tail="one-tailed")
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_chi2_test():
     test_output = {
@@ -59,6 +63,7 @@ def test_htv_chi2_test():
     fig, ax = htv(test_output, test_type="chi2", alpha=0.05)
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_anova_test():
     test_output = {
@@ -72,6 +77,7 @@ def test_htv_anova_test():
     fig, ax = htv(test_output, test_type="anova", alpha=0.05)
     assert isinstance(fig, plt.Figure)
     assert isinstance(ax, plt.Axes)
+    plt.close(fig)
 
 def test_htv_invalid_test_type():
     with pytest.raises(ValueError):
