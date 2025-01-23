@@ -14,11 +14,16 @@ pandas = "^2.2.3"
 seaborn = "^0.13.2"
 matplotlib = "<3.10"
 tk = "^0.1.0"
+scipy = "<1.11.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 pytest-mock = "^3.14.0"
+jupyter = "^1.1.1"
+myst-nb = "^1.1.2"
+sphinx-autoapi = "^3.4.0"
+sphinx-rtd-theme = "^3.0.2"
 
 [tool.semantic_release]
 version_toml = [
