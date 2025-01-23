@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mds_2025_helper_functions"
-version = "0.1.0"
+version = "1.0.1"
 description = "A package to streamline common chunks of code executed in the UBC MDS program"
 authors = ["Karlygash Zhakupbayeva, Samuel Adetsi, Xi Cu, Michael Hewlett"]
 license = "MIT"
