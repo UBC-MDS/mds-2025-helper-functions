@@ -2,34 +2,45 @@ import pandas as pd
 
 def dataset_summary(data):
     """
-    Generates a comprehensive summary of a dataset, including:
-    - Missing value statistics
+    Generates a comprehensive summary of a dataset.
+
+    This function analyzes the input DataFrame and provides insights, including:
+    - Missing value statistics for each column
     - Counts of numerical and categorical features
-    - Duplicate row count
+    - Number of duplicate rows
     - Descriptive statistics for numerical features
     - Unique value counts for categorical features
 
     Parameters
     ----------
     data : pandas.DataFrame
-        The input dataset to analyze and summarize.
+        The dataset to analyze. Must be a pandas DataFrame.
 
     Returns
     -------
     dict
         A dictionary containing the following keys:
-        - 'missing_values': pd.DataFrame
-            A DataFrame summarizing the number and percentage of missing values for each column.
-        - 'feature_types': dict
-            A dictionary with counts of numerical and categorical features:
-            {'numerical_features': int, 'categorical_features': int}.
-        - 'duplicates': int
+        
+        - 'missing_values' (pd.DataFrame): 
+            Summary of missing values, including counts and percentages for each column.
+        - 'feature_types' (dict): 
+            Counts of numerical and categorical features in the dataset.
+            Format: {'numerical_features': int, 'categorical_features': int}.
+        - 'duplicates' (int): 
             The number of duplicate rows in the dataset.
-        - 'numerical_summary': pd.DataFrame
-            Basic descriptive statistics for numerical features.
-        - 'categorical_summary': pd.DataFrame
-            A summary of unique value counts for categorical features.
+        - 'numerical_summary' (pd.DataFrame): 
+            Descriptive statistics for numerical columns.
+        - 'categorical_summary' (pd.DataFrame): 
+            Unique value counts for categorical columns.
+
+    Raises
+    ------
+    TypeError
+        If the input is not a pandas DataFrame.
+    ValueError
+        If the DataFrame is empty or contains unsupported data types.
     """
+    
     # Check input type
     if not isinstance(data, pd.DataFrame):
         raise TypeError("Input must be a pandas DataFrame")
