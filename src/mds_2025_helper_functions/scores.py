@@ -35,6 +35,12 @@ def compare_model_scores(*args, X, y=None, scoring=None, return_train_scores=Fal
         - Rows represent different models.
         - Columns include metrics from cross-validation.
         - Index contains model names.
+    
+    Examples
+    --------
+    >>> from sklearn.linear_model import LogisticRegression
+    >>> from sklearn.ensemble import RandomForestClassifier
+    >>> compare_model_scores(LogisticRegression(), RandomForestClassifier(), X=X_train, y=y_train, scoring="accuracy")
     """
     # Check for at least 2 models to compare
     if len(args) <= 1:
