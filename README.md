@@ -1,5 +1,9 @@
 # mds_2025_helper_functions
 
+[![Documentation Status](https://readthedocs.org/projects/mds-2025-helper-functions/badge/?version=latest)](https://mds-2025-helper-functions.readthedocs.io/en/latest/?badge=latest)
+[![Python CI/CD](https://github.com/UBC-MDS/mds-2025-helper-functions/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/UBC-MDS/mds-2025-helper-functions/actions/workflows/ci-cd.yml)
+[![codecov](https://codecov.io/gh/UBC-MDS/mds-2025-helper-functions/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/mds-2025-helper-functions)
+
 A package to streamline common code chunks executed by students in the UBC MDS program circa 2025. 
 
 ## Functions
