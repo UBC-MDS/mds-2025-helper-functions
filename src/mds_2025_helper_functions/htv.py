@@ -41,38 +41,24 @@ def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
         dist_null = lambda x: norm.pdf(x, loc=mu0, scale=std_error)
         dist_alt = lambda x: norm.pdf(x, loc=mu1, scale=std_error)
 
+    # Handle degrees of freedom for t-test
     elif test_type == "t":
-        if df is None:
-            df = sample_size - 1  # Default degrees of freedom
-        if tail == "two-tailed":
-            critical_value_low = t.ppf(alpha / 2, df=df)
-            critical_value_high = t.ppf(1 - alpha / 2, df=df)
-        else:
-            critical_value = t.ppf(1 - alpha, df=df)
-        dist_null = lambda x: t.pdf(x, df=df)
-        dist_alt = lambda x: t.pdf(x, df=df, loc=mu1 - mu0)
+        df = test_output.get("df", sample_size - 1)
 
+# Handle chi-squared test
     elif test_type == "chi2":
+        df = test_output.get("df", None)
         if df is None:
             raise ValueError("Degrees of freedom (df) must be specified for chi-squared tests.")
-        if tail == "two-tailed":
-            critical_value_low = chi2.ppf(alpha / 2, df=df)
-            critical_value_high = chi2.ppf(1 - alpha / 2, df=df)
-        else:
-            critical_value = chi2.ppf(1 - alpha, df=df)
-        dist_null = lambda x: chi2.pdf(x, df=df)
-        dist_alt = lambda x: chi2.pdf(x, df=df + 1)  # Alternative hypothesis
+        critical_value = chi2.ppf(1 - alpha, df=df)
 
+# Handle ANOVA (F-test)
     elif test_type == "anova":
+        df1 = test_output.get("df1", None)
+        df2 = test_output.get("df2", None)
         if df1 is None or df2 is None:
             raise ValueError("Degrees of freedom (df1 and df2) must be specified for ANOVA tests.")
-        if tail == "two-tailed":
-            critical_value_low = f.ppf(alpha / 2, dfn=df1, dfd=df2)
-            critical_value_high = f.ppf(1 - alpha / 2, dfn=df1, dfd=df2)
-        else:
-            critical_value = f.ppf(1 - alpha, dfn=df1, dfd=df2)
-        dist_null = lambda x: f.pdf(x, dfn=df1, dfd=df2)
-        dist_alt = lambda x: f.pdf(x, dfn=df1, dfd=df2 + 1)  # Alternative hypothesis
+        critical_value = f.ppf(1 - alpha, dfn=df1, dfd=df2)
 
     else:
         raise ValueError("Invalid test type. Choose 'z', 't', 'chi2', or 'anova'.")
