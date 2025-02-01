@@ -14,8 +14,34 @@ def perform_eda(dataframe, rows=5, cols=2):
 
     Returns:
         None
+
+    Example:
+        >>> import pandas as pd
+        >>> from mds_2025_helper_functions.eda import perform_eda
+        >>> data = {
+        ...     'Age': [25, 32, 47, 51, 62],
+        ...     'Salary': [50000, 60000, 120000, 90000, 85000],
+        ...     'Department': ['HR', 'Finance', 'IT', 'Finance', 'HR'],
+        ...     'JoiningDate': pd.to_datetime(['2015-01-01', '2016-07-15', '2017-03-12', '2018-06-01', '2019-08-19']),
+        ...     'Bonus': [0, 5000, 12000, 7500, 7000]
+        ... }
+        >>> df = pd.DataFrame(data)
+
+        >>> # Use the function to perform EDA
+        >>> perform_eda(df, rows=2, cols=2)
+
+        # The above call will generate the following:
+        # 1. A dataset overview
+        # 2. Basic statistics for all columns
+        # 3. A missing values report and heatmap (if applicable)
+        # 4. Correlation heatmap for numeric columns
+        # 5. Feature distribution/count plots
+        # 6. Scatterplots for numeric feature pairs (if applicable)
+        # 7. Outlier detection report for numeric features
+
+        # Note: Visualizations will be shown as matplotlib and seaborn plots.
     """
-    
+
     if not isinstance(dataframe, pd.DataFrame):
         raise TypeError("Input must be a pandas DataFrame.")
 
@@ -38,7 +64,7 @@ def perform_eda(dataframe, rows=5, cols=2):
         plt.show()
     else:
         print("No missing values in the dataset.")
-    
+
     # Correlation heatmap for numeric features
     numeric_cols = dataframe.select_dtypes(include=[np.number]).columns
     if len(numeric_cols) > 1:
@@ -69,13 +95,13 @@ def perform_eda(dataframe, rows=5, cols=2):
             axes[i].set_title(f"Time Series of {feature}")
             axes[i].set_xlabel(feature)
             axes[i].set_ylabel("Count")
-        else: 
+        else:
             sns.countplot(
-                x=dataframe[feature], 
-                ax=axes[i], 
-                order=dataframe[feature].value_counts().index, 
-                palette="viridis", 
-                hue=None, 
+                x=dataframe[feature],
+                ax=axes[i],
+                order=dataframe[feature].value_counts().index,
+                palette="viridis",
+                hue=None,
                 legend=False
             )
             axes[i].tick_params(axis='x', rotation=45)

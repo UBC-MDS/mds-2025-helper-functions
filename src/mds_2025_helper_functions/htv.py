@@ -4,7 +4,7 @@ from scipy.stats import norm, t, chi2, f
 
 def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
     """
-    Visualize Type I (\u03b1) and Type II (\u03b2) errors in hypothesis testing.
+    Visualize Type I (α) and Type II (β) errors in hypothesis testing.
 
     Parameters:
         test_output (dict): Dictionary containing hypothesis test parameters:
@@ -21,6 +21,35 @@ def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
 
     Returns:
         tuple: (fig, ax) Matplotlib figure and axes objects.
+
+    Example:
+        >>> import numpy as np
+        >>> from mds_2025_helper_functions.htv import htv
+        >>>
+        >>> # Example: Visualizing a two-tailed z-test
+        >>> test_params = {
+        ...     'mu0': 100,         # Null hypothesis mean
+        ...     'mu1': 105,         # Alternative mean
+        ...     'sigma': 15,        # Standard deviation
+        ...     'sample_size': 30   # Sample size
+        ... }
+        >>> fig, ax = htv(test_params, test_type="z", alpha=0.05, tail="two-tailed")
+        >>> plt.show()
+
+        # This will plot the null and alternative hypothesis distributions with
+        # shaded regions for Type I and Type II errors, and mark the critical values.
+
+        >>> # Example: One-tailed t-test with degrees of freedom
+        >>> test_params_t = {
+        ...     'mu0': 0,
+        ...     'mu1': 1.5,
+        ...     'sigma': 1,
+        ...     'sample_size': 25
+        ... }
+        >>> fig, ax = htv(test_params_t, test_type="t", alpha=0.01, tail="one-tailed")
+        >>> plt.show()
+
+        # This will plot a one-tailed t-test diagram with appropriate critical regions.
     """
     mu0 = test_output.get("mu0", 0)
     mu1 = test_output.get("mu1", 1)
@@ -91,12 +120,14 @@ def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
 
     # Fill Type I and Type II error regions
     if tail == "two-tailed":
-        ax.fill_between(x, 0, y_null, where=(x <= critical_value_low) | (x >= critical_value_high), 
+        ax.fill_between(x, 0, y_null, where=(x <= critical_value_low) | (x >= critical_value_high),
                         color="orange", alpha=0.5, label="Type I Error (α)")
-        ax.fill_between(x, 0, y_alt, where=(x > critical_value_low) & (x < critical_value_high), 
+        ax.fill_between(x, 0, y_alt, where=(x > critical_value_low) & (x < critical_value_high),
                         color="green", alpha=0.5, label="Type II Error (β)")
-        ax.axvline(x=critical_value_low, color="black", linestyle="--", label=f"Critical Value (Low) = {critical_value_low:.2f}")
-        ax.axvline(x=critical_value_high, color="black", linestyle="--", label=f"Critical Value (High) = {critical_value_high:.2f}")
+        ax.axvline(x=critical_value_low, color="black", linestyle="--",
+                   label=f"Critical Value (Low) = {critical_value_low:.2f}")
+        ax.axvline(x=critical_value_high, color="black", linestyle="--",
+                   label=f"Critical Value (High) = {critical_value_high:.2f}")
     else:
         ax.fill_between(x, 0, y_null, where=(x >= critical_value), color="orange", alpha=0.5, label="Type I Error (α)")
         ax.fill_between(x, 0, y_alt, where=(x < critical_value), color="green", alpha=0.5, label="Type II Error (β)")
@@ -110,4 +141,3 @@ def htv(test_output, test_type="z", alpha=0.05, tail="two-tailed"):
     ax.grid(alpha=0.3)
 
     return fig, ax
-
